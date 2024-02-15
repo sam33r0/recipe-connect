@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
@@ -6,16 +5,14 @@ import Recipehelper from './components/RecipeHelper/Recipehelper'
 import { Outlet } from 'react-router-dom'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <Header />
       <div className='flex flex-wrap'>
-        <div className='w-3/4'>
+        <div className='w-full sm:w-4/6 '>
           <Outlet />
         </div>
-        <div className='w-1/4'>
+        <div className="hidden sm:block bg-lime-200 w-2/6 rounded-md">
           <Recipehelper />
         </div>
       </div>
