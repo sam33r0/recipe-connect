@@ -11,8 +11,14 @@ function App() {
   return (
     <>
       <Header />
-      <Outlet/>
-      <Recipehelper />
+      <div className='flex flex-wrap'>
+        <div className='w-3/4'>
+          <Outlet />
+        </div>
+        <div className='w-1/4'>
+          <Recipehelper />
+        </div>
+      </div>
       <Footer />
     </>
   )
