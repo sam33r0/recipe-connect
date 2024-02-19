@@ -8,6 +8,9 @@ import Home from './components/pages/Home.jsx'
 import store from './components/store/store.js'
 import { Provider } from 'react-redux'
 import About from './components/pages/About.jsx'
+import Contact from './components/pages/Contact.jsx'
+import Signup from './components/pages/Signup.jsx'
+import Signin from './components/pages/Signin.jsx'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +28,18 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <About/>
+      },
+      {
+        path: '/contact',
+        element: <Contact/>
+      },
+      {
+        path: '/signup',
+        element: <Signup/>
+      },
+      {
+        path: '/signin',
+        element: <Signin/>
       }
     ]
   }]);

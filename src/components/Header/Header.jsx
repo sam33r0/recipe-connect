@@ -7,8 +7,8 @@ function Header() {
   let authStatus = useSelector((state) => state.auth.status);
   const navItems = [
     {
-      name: "Login",
-      slug: "/login",
+      name: "Signin",
+      slug: "/signin",
       active: !authStatus,
     },
     {

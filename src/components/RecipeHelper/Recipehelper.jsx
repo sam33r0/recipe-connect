@@ -59,12 +59,13 @@ function Recipehelper() {
               <Message role={item.role} content={item.content} />
             </div>
         ))}
-        <span className="text-lime-200 mt-24 center" >bottom</span><br/>
-        <span className="text-lime-200 mt-24 " ref={scrRef}>bottom</span>
+        <span className="text-lime-200 " >bottom</span><br/>
+        <span className="text-lime-200 " ref={scrRef}>bottom</span>
       </ScrollArea>
       <form onSubmit={handleSubmit(submit)} >
         <div className='flex flex-wrap '>
           <Input
+            autocomplete="off"
             className='w-5/6'
             {...register("content", { required: true })}
             type="text"
