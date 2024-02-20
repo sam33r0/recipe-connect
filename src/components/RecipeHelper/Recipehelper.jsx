@@ -65,7 +65,7 @@ function Recipehelper() {
       <form onSubmit={handleSubmit(submit)} >
         <div className='flex flex-wrap '>
           <Input
-            autocomplete="off"
+            autoComplete="off"
             className='w-5/6'
             {...register("content", { required: true })}
             type="text"

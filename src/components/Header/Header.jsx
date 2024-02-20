@@ -2,17 +2,18 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import Logo from '../Logo/Logo'
 import { useSelector } from 'react-redux'
+import LogoutBtn from './LogoutBtn'
 function Header() {
 
   let authStatus = useSelector((state) => state.auth.status);
   const navItems = [
     {
-      name: "Signin",
+      name: "Sign-In",
       slug: "/signin",
       active: !authStatus,
     },
     {
-      name: "Signup",
+      name: "Sign-Up",
       slug: "/signup",
       active: !authStatus,
     },
@@ -27,7 +28,7 @@ function Header() {
       active: authStatus,
     },
   ]
-  
+
   return (
     <>
       <header className="shadow sticky z-50 top-0">
@@ -37,7 +38,7 @@ function Header() {
               <Logo />
             </Link>
             <div className="flex items-center lg:order-2">
-              {navItems.map((item) => (item.active ? 
+              {navItems.map((item) => (item.active ?
                 <NavLink
                   key={item.slug}
                   to={item.slug}
@@ -47,7 +48,11 @@ function Header() {
                   }
                 >
                   {item.name}
-                </NavLink>: null))}
+                </NavLink> : null))}
+              {authStatus && (
+                <div>
+                  <LogoutBtn />
+                </div>)}
             </div>
             <div
               className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
