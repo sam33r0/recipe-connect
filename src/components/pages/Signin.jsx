@@ -36,8 +36,8 @@ function Signin() {
     }
   }
   return (
-    <div className='h-full mt-8 md:ml-16 item-center p-4'>
-      <div className='shadow rounded bg-gray-200 mx-4 py-4 md:mx-16 px-4 md:px-8 w-5/6 md:w-4/6 h-full md:h-5/6 justify-center items-center'>
+    <div className='h-full mt-3 md:mt-4 md:ml-16 item-center p-4'>
+      <div className='shadow rounded bg-gray-200 mx-4 py-4 md:mx-16 px-4 md:px-8 w-5/6 md:w-4/6 h-full justify-center items-center'>
         <h2 className='text-center text-2xl font-bold leading-tight'>
           Sign In to your account
         </h2>
@@ -55,7 +55,8 @@ function Signin() {
             <Input type="email" id="email" {...register("email")} placeholder="Email"></Input>
             <p className="text-center text-base text-black/60">OR</p>
             <Input type="text" placeholder="username" {...register("username")}></Input>
-            <Input type="password" {...register("password", { required: true })} placeholder="password" autoComplete="on"></Input>
+            <label htmlFor="password">Password</label>
+            <Input type="password" id="password" {...register("password", { required: true })} placeholder="password" autoComplete="on"></Input>
 
           </div>
           <Button className="w-2/6 md:w-1/6" type="submit">Sign In</Button>

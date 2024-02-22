@@ -23,7 +23,7 @@ function LogoutBtn() {
             },
             withCredentials: true
         }).then((res) => {
-            console.log(res);
+            //console.log(res);
             dispath(logout());
         })
     }

@@ -11,6 +11,8 @@ import About from './components/pages/About.jsx'
 import Contact from './components/pages/Contact.jsx'
 import Signup from './components/pages/Signup.jsx'
 import Signin from './components/pages/Signin.jsx'
+import Myrecipe from './components/pages/Myrecipe.jsx'
+import Addrecipe from './components/pages/Addrecipe.jsx'
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
       {
         path: '/signin',
         element: <Signin/>
+      },
+      {
+        path: '/my-recipe',
+        element: <Myrecipe/>
+      },
+      {
+        path: '/add-recipe',
+        element: <Addrecipe/>
       }
     ]
   }]);

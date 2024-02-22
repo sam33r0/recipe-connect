@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import Logo from '../Logo/Logo'
 import { useSelector } from 'react-redux'
@@ -8,7 +8,7 @@ function Header() {
   let authStatus = useSelector((state) => state.auth.status);
   const navItems = [
     {
-      name: "Sign-In",
+      name: "Sign-In", 
       slug: "/signin",
       active: !authStatus,
     },

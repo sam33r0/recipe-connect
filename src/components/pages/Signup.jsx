@@ -54,7 +54,7 @@ function Signup() {
         <>
             <div className='mt-8 h-full p-4'>
                 <div className='shadow rounded bg-gray-200 mx-4 py-4 md:mx-16 px-4 md:px-8 w-5/6 md:size-5/6 justify-center items-center'>
-                    <h2 className='text-center text-2xl font-bold leading-tigh'>
+                    <h2 className='text-center text-2xl font-bold leading-tight'>
                         Sign Up to create account
                     </h2>
                     <p className="mt-2 text-center text-base text-black/60">

@@ -66,12 +66,12 @@ function Recipehelper() {
         <div className='flex flex-wrap '>
           <Input
             autoComplete="off"
-            className='w-5/6'
+            className='focus:outline-none focus:border-none w-5/6'
             {...register("content", { required: true })}
             type="text"
             placeholder="enter your question"
           />
-          <Button className="w-1/6" variant="ghost">Send</Button>
+          <Button className="w-1/6 z-100" variant="ghost">Send</Button>
         </div>
       </form>
     </div>
