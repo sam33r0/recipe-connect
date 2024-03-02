@@ -19,6 +19,7 @@ import {
 function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userdata= useSelector((state)=> state.auth.userData);
   let authStatus = useSelector((state) => state.auth.status);
   let bppl = true;
   if (!authStatus) {
@@ -34,7 +35,7 @@ function Home() {
     axios.post((backendUri + '/users/current-user'), {}, {
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Authorization': 'Bearer <token>'
+        'Authorization': `Bearer ${userdata?.refreshToken}`
       },
       withCredentials: true
     }).then((res) => {
@@ -58,21 +59,32 @@ function Home() {
         align: "start",
         loop: true
       }}
-      className="w-full max-w-xs ml-8"
+      className="w-5/6 ml-8 mx-auto"
     >
-      <CarouselContent>
+      <CarouselContent className="mx-auto my-5">
         {recipe.map((recip, index) => (
           <Link key={index} to={`/recipe/${recip._id}`}>
-            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-              <div className="p-1">
+            <CarouselItem key={index} className="basis-2/3">
+              <div className='flex w-[250px] md:w-[300px] flex-col h-[450px]'>
+                <div className={`${recip.category =="VEG"? "bg-lime-300 text-red-600" : recip.category=="NONVEG"? "bg-red-600 text-white": "bg-yellow-400"} p-2 text-xl font-bold text-center`}>
+                {recip.name}
+                </div>
+                <div className='flex-1 flex justify-center items-center'>
+                <img src={recip.image} className="h-full w-auto" alt={recip.name} />
+                </div>
+                {/* <div className='class="bg-blue-500 p-4 flex justify-center items-center"'>
+                {recip.category}
+                </div> */}
+              </div>
+              {/* <div className="">
                 <Card>
                   <CardHeader>{recip.name}</CardHeader>
-                  <CardContent className="flex aspect-square w-full items-center justify-center p-6">
+                  <CardContent className="flex  aspect-square w-full items-center justify-center ">
                     <img src={recip.image} alt={recip.name} />
                   </CardContent>
                   <CardFooter className="flex justify-between">{recip.category}</CardFooter>
                 </Card>
-              </div>
+              </div> */}
             </CarouselItem>
           </Link>
         ))}

@@ -13,6 +13,7 @@ import axios from 'axios'
 
 function Addrecipe() {
   const authStatus = useSelector((state) => state.auth.status);
+  const userdata= useSelector((state)=> state.auth.userData);
   const [cookinTime, setCookinTime] = useState(1);
   const [cookTime, setCookTime] = useState("1 Minute");
   const [ingre, setIngre] = useState('');
@@ -47,7 +48,9 @@ function Addrecipe() {
   const handleIngre = (event) => {
     setIngre(event.target.value);
   }
-  const addIngre = () => {
+  const addIngre = (e) => {
+    if(e)
+    e.preventDefault();
     if (ingre.length != 0) {
       ingredient.push(ingre);
       setIngredient(ingredient);
@@ -64,15 +67,15 @@ function Addrecipe() {
         name: data.name,
         ingredient: ingredient,
         content: data.content,
-        cookingTime: cookinTime,
-        vissibility: data.vissibility=="Public",
+        cookingTime: cookTime,
+        visibility: data.vissibility == "Public",
         category: data.category,
         localImagePath: data.localImagePath[0]
       },
       {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Authorization': 'Bearer <token>'
+          'Authorization': `Bearer ${userdata?.refreshToken}`
         },
         withCredentials: true
       },
@@ -101,7 +104,7 @@ function Addrecipe() {
                 />
                 <Select
                   options={["Public", "Private"]}
-                  label="Vissibility"
+                  label="Visibility"
                   {...register("vissibility", { required: true })}
                 />
 
@@ -116,10 +119,12 @@ function Addrecipe() {
             <div className={`${cookinTime < 333 ? `text-green-500` : cookinTime < 666 ? `text-yellow-500` : `text-red-500`} text-center text-lg font-semibold mb-2`} >
               {cookTime}
             </div>
-            <Input placeholder="Enter Ingredients" value={ingre} onChange={handleIngre} />
-            <Button variant="secondary" className="mt-2" onClick={addIngre}>
-              Add Ingredient
-            </Button><br />
+            <form onSubmit={addIngre}>
+              <Input placeholder="Enter Ingredients" value={ingre} onChange={handleIngre} />
+              <Button variant="secondary" className="mt-2" onClick={addIngre}>
+                Add Ingredient
+              </Button><br />
+            </form>
             <ScrollArea className="h-[150px] my-2 bg-gray-300 rounded-md">
               {ingredient.map((itm, index) => (
                 <li key={index} className='grid grid-cols-3'>

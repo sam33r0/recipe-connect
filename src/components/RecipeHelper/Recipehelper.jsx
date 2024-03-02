@@ -48,14 +48,14 @@ function Recipehelper() {
   }
   return (
     <div id="checking">
-      <ScrollArea className="h-[500px] rounded-md">
+      <ScrollArea className="h-[500px] mx-auto rounded-md">
         {message.map((item) => (
           item.role == "user" ?
-            <div className='w-3/4 relative left-1/4' key={Math.random()}>
+            <div className='w-3/4 relative break-words left-1/4' key={Math.random()}>
               <Message role={item.role} content={item.content} />
             </div>
             :
-            <div className='w-3/4 relative ' key={Math.random()}>
+            <div className='w-3/4 relative break-words' key={Math.random()}>
               <Message role={item.role} content={item.content} />
             </div>
         ))}
