@@ -2,13 +2,22 @@ import React, { useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import Logo from '../Logo/Logo'
 import { useSelector } from 'react-redux'
-import LogoutBtn from './LogoutBtn'
+import YourProfile from './YourProfile'
+import { useNavigate } from 'react-router-dom'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../../@/components/ui/dropdown-menu"
 function Header() {
-
+  const navigate= useNavigate();
   let authStatus = useSelector((state) => state.auth.status);
   const navItems = [
     {
-      name: "Sign-In", 
+      name: "Sign-In",
       slug: "/signin",
       active: !authStatus,
     },
@@ -34,8 +43,32 @@ function Header() {
       <header className="shadow sticky z-50 top-0">
         <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-            <Link to="/" className="flex items-center">
-              <Logo />
+            <Link to="/" className="hidden md:flex items-center">
+              <img src="/colourLogoTransparent.png" width="80px" alt="Recipe Hub" />
+            </Link>
+            <div className="md:hidden flex items-center">
+
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="40" height="40">
+                    <line x1="10" y1="32" x2="90" y2="32" stroke="black" stroke-width="5" />
+                    <line x1="10" y1="50" x2="90" y2="50" stroke="black" stroke-width="5" />
+                    <line x1="10" y1="68" x2="90" y2="68" stroke="black" stroke-width="5" />
+                  </svg>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>Navigate
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem><button className="w-full h-full text-left" onClick={()=>{navigate('/')}} >Home</button></DropdownMenuItem>
+                  <DropdownMenuItem><button className="w-full h-full text-left" onClick={()=>{navigate('/about')}} >About</button></DropdownMenuItem>
+                  <DropdownMenuItem><button className="w-full h-full text-left" onClick={()=>{navigate('/contact')}} >Contact Us</button></DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+            </div>
+            <Link to="/" className="md:hidden flex items-center">
+              <img src="/colourLogoTransparent.png" width="80px" alt="Recipe Hub" />
             </Link>
             <div className="flex items-center lg:order-2">
               {navItems.map((item) => (item.active ?
@@ -51,7 +84,7 @@ function Header() {
                 </NavLink> : null))}
               {authStatus && (
                 <div>
-                  <LogoutBtn />
+                  <YourProfile />
                 </div>)}
             </div>
             <div

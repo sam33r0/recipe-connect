@@ -36,7 +36,7 @@ function Signin() {
     }
   }
   return (
-    <div className='h-full mt-3 md:mt-4 md:ml-16 item-center p-4'>
+    <div className='h-full mt-3 md:ml-16 item-center pb-4 px-4'>
       <div className='shadow rounded bg-gray-200 mx-4 py-4 md:mx-16 px-4 md:px-8 w-5/6 md:w-4/6 h-full justify-center items-center'>
         <h2 className='text-center text-2xl font-bold leading-tight'>
           Sign In to your account

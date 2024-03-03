@@ -14,6 +14,9 @@ import Signin from './components/pages/Signin.jsx'
 import Myrecipe from './components/pages/Myrecipe.jsx'
 import Addrecipe from './components/pages/Addrecipe.jsx'
 import RecipePage from './components/pages/RecipePage.jsx'
+import ChangePassword from './components/UserPages/ChangePassword.jsx'
+import UpdateAcD from './components/UserPages/UpdateAcD.jsx'
+import UpdateAvatar from './components/UserPages/UpdateAvatar.jsx'
 
 const router = createBrowserRouter([
   {
@@ -55,6 +58,18 @@ const router = createBrowserRouter([
       {
         path:'/recipe/:id',
         element: <RecipePage/>
+      },
+      {
+        path: '/user/change-password',
+        element: <ChangePassword/>
+      },
+      {
+        path: '/user/update-account',
+        element: <UpdateAcD/>
+      },
+      {
+        path: '/user/update-avatar',
+        element: <UpdateAvatar/>
       }
     ]
   }]);
