@@ -80,7 +80,6 @@ function Addrecipe() {
         withCredentials: true
       },
     );
-    console.log(response);
     reset();
     navigate('/');
   }

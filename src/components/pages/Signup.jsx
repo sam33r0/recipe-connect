@@ -41,7 +41,6 @@ function Signup() {
                     withCredentials: true
                 }
             );
-            console.log(res.data.data.user);
             if (res) {
                 dispatch(login(res.data.data.user));
                 navigate('/');

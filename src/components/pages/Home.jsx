@@ -26,71 +26,63 @@ function Home() {
   const [egg, setEgg] = useState(true);
   const [nonveg, setNonVeg] = useState(true);
   const [veg, setVeg] = useState(true);
-  if (!authStatus) {
-    // (async()=>{
-    //   console.log('checked');
-    // await axios.post((backendUri + '/users/refresh-access-token'), {}, {
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data',
-    //     'Authorization': 'Bearer <token>'
-    //   },
-    //   withCredentials: true
-    // })})();
-    axios.post((backendUri + '/users/current-user'), {}, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        'Authorization': `Bearer ${userdata?.refreshToken}`
-      },
-      withCredentials: true
-    }).then((res) => {
-      dispatch(login(res.data.data));
-    }).catch((error) => {
-      console.log('please login!');
-    })
-  }
+  // if (!authStatus) {
+  //   // (async()=>{
+  //   //   console.log('checked');
+  //   // await axios.post((backendUri + '/users/refresh-access-token'), {}, {
+  //   //   headers: {
+  //   //     'Content-Type': 'multipart/form-data',
+  //   //     'Authorization': 'Bearer <token>'
+  //   //   },
+  //   //   withCredentials: true
+  //   // })})();
+  //   axios.post((backendUri + '/users/current-user'), {}, {
+  //     headers: {
+  //       'Content-Type': 'multipart/form-data',
+  //       'Authorization': `Bearer ${userdata?.refreshToken}`
+  //     },
+  //     withCredentials: true
+  //   }).then((res) => {
+  //     dispatch(login(res.data.data));
+  //   }).catch((error) => {
+  //     console.log('please login!');
+  //   })
+  // }
   const [recipe, setRecipe] = useState([]);
   useEffect(() => {
     (async () => {
       if (egg && veg && nonveg) {
         const reci = await axios.get((backendUri + "/recipe/get-all-recipes"), {})
         setRecipe(reci.data.data.recipes)
-        console.log(reci.data.data.recipes);
       }
       else if (egg && !nonveg && !veg) {
         const reci = await axios.get((backendUri + "/recipe/egg-recipes"), {})
         setRecipe(reci.data.data.recipes)
-        console.log(reci.data.data.recipes);
+        
       }
       else if (!egg && !nonveg && veg) {
         const reci = await axios.get((backendUri + "/recipe/veg-recipes"), {})
         setRecipe(reci.data.data.recipes)
-        console.log(reci.data.data.recipes);
       }
       else if (egg && !nonveg && veg) {
         const reci = await axios.get((backendUri + "/recipe/egg-or-veg-recipes"), {})
         setRecipe(reci.data.data.recipes)
-        console.log(reci.data.data.recipes);
       }
       else if (egg && nonveg && !veg) {
         const reci = await axios.get((backendUri + "/recipe/egg-or-nonveg-recipes"), {})
         setRecipe(reci.data.data.recipes)
-        console.log(reci.data.data.recipes);
       }
       else if (!egg && nonveg && !veg) {
         const reci = await axios.get((backendUri + "/recipe/nonveg-recipes"), {})
         setRecipe(reci.data.data.recipes)
-        console.log(reci.data.data.recipes);
       }
       else if (!egg && nonveg && veg) {
-        console.log(egg,veg,nonveg)
         const reci = await axios.get((backendUri + "/recipe/veg-or-nonveg-recipes"), {})
         setRecipe(reci.data.data.recipes)
-        console.log(reci.data.data.recipes);
       }
       else {
         const reci = await axios.get((backendUri + "/recipe/get-all-recipes"), {})
         setRecipe(reci.data.data.recipes)
-        console.log(reci.data.data.recipes);
       }
     })()
   }, [egg, veg, nonveg])
