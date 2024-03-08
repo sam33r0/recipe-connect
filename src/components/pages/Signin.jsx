@@ -32,6 +32,7 @@ function Signin() {
       reset();
     }
     catch (error) {
+      console.log(error);
       setErro(true);
     }
   }
