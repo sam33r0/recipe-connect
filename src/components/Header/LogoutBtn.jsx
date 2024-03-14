@@ -26,6 +26,7 @@ function LogoutBtn() {
         }).then((res) => {
             //console.log(res);
             dispath(logout());
+            navigate('/signin');
         })
     }
     return (
