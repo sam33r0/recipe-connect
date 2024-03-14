@@ -12,6 +12,7 @@ import {
 } from '../../@/components/ui/avatar.jsx'
 function LogoutBtn() {
     const user = useSelector((state) => state.auth.userData);
+    const accessToken= useSelector((state)=> state.auth.accessToken);
     const avatar = user.avatar;
     const navigate = useNavigate();
     const dispath = useDispatch();
@@ -19,7 +20,7 @@ function LogoutBtn() {
         axios.post((backendUri + '/users/logout'), {}, {
             headers: {
                 'Content-Type': 'multipart/form-data',
-                'Authorization': 'Bearer <token>'
+                'Authorization': `Bearer ${accessToken}`
             },
             withCredentials: true
         }).then((res) => {
