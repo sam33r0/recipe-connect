@@ -18,9 +18,18 @@ function UpdateAvatar() {
     try {
       setErro(false)
       console.log("hehe");
+      const fdata = new FormData();
+      fdata.append("file", data.avatar[0]);
+      fdata.append("upload_preset", "scckzbdr");
+      fdata.append('cloud_name', 'de9rb613m')
+      const res = await fetch('https://api.cloudinary.com/v1_1/de9rb613m/image/upload', {
+        method: 'post',
+        body: fdata
+      })
+      const avatar = await res.json()
       const response = await axios.post((backendUri + '/users/update-avatar'),
         {
-          avatarLocalPath: data.avatar[0]
+          avatar: avatar
         },
         {
           headers: {

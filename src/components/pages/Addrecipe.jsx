@@ -10,11 +10,10 @@ import { ScrollArea } from "./../../@/components/ui/scroll-area"
 import Select from './../Select.jsx';
 import { backendUri } from './../../envconfig.js'
 import axios from 'axios'
-
 function Addrecipe() {
   const authStatus = useSelector((state) => state.auth.status);
-  const userdata= useSelector((state)=> state.auth.userData);
-  const accessToken= useSelector((state)=> state.auth.accessToken);
+  const userdata = useSelector((state) => state.auth.userData);
+  const accessToken = useSelector((state) => state.auth.accessToken);
   const [cookinTime, setCookinTime] = useState(1);
   const [cookTime, setCookTime] = useState("1 Minute");
   const [ingre, setIngre] = useState('');
@@ -50,8 +49,8 @@ function Addrecipe() {
     setIngre(event.target.value);
   }
   const addIngre = (e) => {
-    if(e)
-    e.preventDefault();
+    if (e)
+      e.preventDefault();
     if (ingre.length != 0) {
       ingredient.push(ingre);
       setIngredient(ingredient);
@@ -63,6 +62,15 @@ function Addrecipe() {
     setIngredient(newArray);
   }
   const recipeSubmit = async (data) => {
+    const fdata = new FormData();
+    fdata.append("file", data.localImagePath[0]);
+    fdata.append("upload_preset", "scckzbdr");
+    fdata.append('cloud_name', 'de9rb613m')
+    const res = await fetch('https://api.cloudinary.com/v1_1/de9rb613m/image/upload',{
+      method: 'post',
+      body: fdata
+    })
+    const image=await res.json()
     const response = await axios.post((backendUri + '/recipe/upload-recipe'),
       {
         name: data.name,
@@ -71,7 +79,7 @@ function Addrecipe() {
         cookingTime: cookTime,
         visibility: data.vissibility == "Public",
         category: data.category,
-        localImagePath: data.localImagePath[0]
+        image: image
       },
       {
         headers: {
