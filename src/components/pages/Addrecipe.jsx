@@ -14,6 +14,7 @@ import axios from 'axios'
 function Addrecipe() {
   const authStatus = useSelector((state) => state.auth.status);
   const userdata= useSelector((state)=> state.auth.userData);
+  const accessToken= useSelector((state)=> state.auth.accessToken);
   const [cookinTime, setCookinTime] = useState(1);
   const [cookTime, setCookTime] = useState("1 Minute");
   const [ingre, setIngre] = useState('');
@@ -75,7 +76,7 @@ function Addrecipe() {
       {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${userdata?.refreshToken}`
+          'Authorization': `Bearer ${accessToken}`
         },
         withCredentials: true
       },

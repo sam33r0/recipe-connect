@@ -14,6 +14,7 @@ import {
 function Myrecipe() {
   const authStatus = useSelector((state) => state.auth.status)
   const userdata = useSelector((state) => state.auth.userData);
+  const accessToken= useSelector((state)=> state.auth.accessToken);
   const navigate = useNavigate();
   const [recipe, setRecipe] = useState([]);
   useEffect(() => {
@@ -21,14 +22,14 @@ function Myrecipe() {
       const reci = await axios.get((backendUri + "/recipe/my-recipes"), {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${userdata?.refreshToken}`
+          'Authorization': `Bearer ${accessToken}`
         },
         withCredentials: true
       })
       setRecipe(reci.data.data)
-      console.log(reci);
-      console.log(reci.data.data);
-      console.log(userdata);
+      // console.log(reci);
+      // console.log(reci.data.data);
+      // console.log(userdata);
     })()
   }, [])
   return (

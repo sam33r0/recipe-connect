@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { backendUri } from './../../envconfig.js'
 import axios from 'axios'
 function Signin() {
-  const [erro,setErro]=useState(false);
+  const [erro, setErro] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { register, handleSubmit, reset } = useForm();
@@ -26,7 +26,7 @@ function Signin() {
         }
       );
       if (res) {
-        dispatch(login(res.data.data.user));
+        dispatch(login({ 'user': res.data.data.user, 'accessToken': res.data.data.accessToken }));
         navigate('/');
       }
       reset();

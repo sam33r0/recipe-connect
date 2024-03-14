@@ -42,7 +42,7 @@ function Signup() {
                 }
             );
             if (res) {
-                dispatch(login(res.data.data.user));
+                dispatch(login({ 'user': res.data.data.user, 'accessToken': res.data.data.accessToken }));
                 navigate('/');
             }
         }

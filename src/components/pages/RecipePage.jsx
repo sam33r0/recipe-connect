@@ -16,22 +16,24 @@ import { Switch } from "../../@/components/ui/switch"
 
 function RecipePage() {
   const navigate = useNavigate();
+
+  const [visibility, setVisibility] = useState(true);
+  const authStatus = useSelector((state) => state.auth.status);
+  const userdata = useSelector((state) => state.auth.userData);
+  const accessToken = useSelector((state) => state.auth.accessToken);
   const deleteRecipe = async () => {
     const delet = await axios.post((backendUri + "/recipe/delete-recipe"), {
       recId: param.id,
     },
       {
         headers: {
-          'Authorization': `Bearer ${userdata?.refreshToken}`
+          'Authorization': `Bearer ${accessToken}`
         },
         withCredentials: true
       })
     console.log(delet);
     navigate('/')
   }
-  const [visibility, setVisibility] = useState(true);
-  const authStatus = useSelector((state) => state.auth.status);
-  const userdata = useSelector((state) => state.auth.userData);
   const param = useParams();
   const [recipe, setRecipe] = useState({});
   useEffect(() => {
@@ -52,7 +54,7 @@ function RecipePage() {
       },
         {
           headers: {
-            'Authorization': `Bearer ${userdata?.refreshToken}`
+            'Authorization': `Bearer ${accessToken}`
           },
           withCredentials: true
         })
@@ -131,12 +133,12 @@ function RecipePage() {
         <div className=' flex flex-wrap bg-yellow-100 h-[270px]' style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(${recipe?.recipe?.image})` }}>
           {/* <ScrollArea className={`${recipe?.recipe?.category == "VEG" ? "bg-lime-200 text-red-700" : recipe?.recipe?.category == "NONVEG" ? "bg-red-500 text-white" : "bg-yellow-300"} h-full w-full p-3 rounded-md}`}> */}
           <ScrollArea className={`mt-4 bg-gray-100 bg-opacity-80 h-5/6 mx-auto w-5/6 p-3 rounded-md}`}>
-          <span className="sticky">Ingredients: </span><br />
-          {recipe?.recipe?.ingredient.map((itm, index) => (
-            <li key={index} className=''>
-              <span className=''>{itm}</span>
-            </li>
-          ))}
+            <span className="sticky">Ingredients: </span><br />
+            {recipe?.recipe?.ingredient.map((itm, index) => (
+              <li key={index} className=''>
+                <span className=''>{itm}</span>
+              </li>
+            ))}
           </ScrollArea>
         </div>
       </div>

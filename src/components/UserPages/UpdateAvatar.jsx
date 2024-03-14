@@ -5,13 +5,14 @@ import { useForm } from "react-hook-form";
 import { backendUri } from './../../envconfig.js'
 import axios from 'axios'
 import { login } from '../store/authSlice.js'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 function UpdateAvatar() {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const [erro, setErro] = useState(false);
+  const accessToken = useSelector((state) => state.auth.accessToken);
   const [succes, setSucces] = useState(false);
   const updateAvat = async (data) => {
     try {
@@ -24,7 +25,7 @@ function UpdateAvatar() {
         {
           headers: {
             'Content-Type': 'multipart/form-data',
-            'Authorization': 'Bearer <token>'
+            'Authorization': `Bearer ${accessToken}`
           },
           withCredentials: true
         },

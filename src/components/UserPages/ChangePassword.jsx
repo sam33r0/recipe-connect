@@ -5,10 +5,12 @@ import { useForm } from "react-hook-form";
 import { backendUri } from './../../envconfig.js'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 function ChangePassword() {
   const { register, handleSubmit, reset } = useForm();
   const [erro, setErro] = useState(false);
   const navigate = useNavigate();
+  const accessToken = useSelector((state) => state.auth.accessToken);
   const [succes, setSucces] = useState(false);
   const updatePass = async (data) => {
     try {
@@ -21,6 +23,9 @@ function ChangePassword() {
             newPassword: data.newPassword
           },
           {
+            headers: {
+              'Authorization': `Bearer ${accessToken}`
+            },
             withCredentials: true
           }
         );

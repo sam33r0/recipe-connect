@@ -5,13 +5,14 @@ import { useForm } from "react-hook-form";
 import { backendUri } from './../../envconfig.js'
 import axios from 'axios'
 import { login } from '../store/authSlice.js'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 function UpdateAcD() {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const { register, handleSubmit, reset } = useForm();
   const [erro, setErro] = useState(false);
   const navigate = useNavigate();
+  const accessToken = useSelector((state) => state.auth.accessToken);
   const [succes, setSucces] = useState(false);
   const updatePass = async (data) => {
     try {
@@ -23,6 +24,9 @@ function UpdateAcD() {
           fullName: data.fullName
         },
         {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          },
           withCredentials: true
         }
       );
