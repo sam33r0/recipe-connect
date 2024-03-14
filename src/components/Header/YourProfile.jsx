@@ -33,7 +33,6 @@ function YourProfile() {
             },
             withCredentials: true
         }).then((res) => {
-            console.log(res);
             dispath(logout());
             navigate('/about');
         })
