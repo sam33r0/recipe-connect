@@ -4,20 +4,14 @@ import App from './App.jsx'
 import './index.css'
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Home from './components/pages/Home.jsx'
+
 import store from './components/store/store.js'
 import { Provider } from 'react-redux'
-import About from './components/pages/About.jsx'
-import Contact from './components/pages/Contact.jsx'
-import Signup from './components/pages/Signup.jsx'
-import Signin from './components/pages/Signin.jsx'
-import Myrecipe from './components/pages/Myrecipe.jsx'
-import Addrecipe from './components/pages/Addrecipe.jsx'
-import RecipePage from './components/pages/RecipePage.jsx'
+
 import ChangePassword from './components/UserPages/ChangePassword.jsx'
 import UpdateAcD from './components/UserPages/UpdateAcD.jsx'
 import UpdateAvatar from './components/UserPages/UpdateAvatar.jsx'
-
+import { Home, About, Contact, Signin, Signup, Myrecipe, Addrecipe, RecipePage } from "./components/pages/index.js"
 const router = createBrowserRouter([
   {
     path: '/',
@@ -33,43 +27,43 @@ const router = createBrowserRouter([
       },
       {
         path: '/about',
-        element: <About/>
+        element: <About />
       },
       {
         path: '/contact',
-        element: <Contact/>
+        element: <Contact />
       },
       {
         path: '/signup',
-        element: <Signup/>
+        element: <Signup />
       },
       {
         path: '/signin',
-        element: <Signin/>
+        element: <Signin />
       },
       {
         path: '/my-recipe',
-        element: <Myrecipe/>
+        element: <Myrecipe />
       },
       {
         path: '/add-recipe',
-        element: <Addrecipe/>
+        element: <Addrecipe />
       },
       {
-        path:'/recipe/:id',
-        element: <RecipePage/>
+        path: '/recipe/:id',
+        element: <RecipePage />
       },
       {
         path: '/user/change-password',
-        element: <ChangePassword/>
+        element: <ChangePassword />
       },
       {
         path: '/user/update-account',
-        element: <UpdateAcD/>
+        element: <UpdateAcD />
       },
       {
         path: '/user/update-avatar',
-        element: <UpdateAvatar/>
+        element: <UpdateAvatar />
       }
     ]
   }]);
