@@ -57,7 +57,7 @@ function YourProfile() {
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
 
-                    <DropdownMenuItem><button className="w-full h-full text-left" onClick={logoutHandler}>My Recipes</button></DropdownMenuItem>
+                    <DropdownMenuItem><button className="w-full h-full text-left" onClick={myRecipe}>My Recipes</button></DropdownMenuItem>
                     <DropdownMenuItem><button className="w-full h-full text-left" onClick={changePass}>Change Password </button></DropdownMenuItem>
                     <DropdownMenuItem><button className="w-full h-full text-left" onClick={updateAvata}>Update Profile Photo</button></DropdownMenuItem>
                     <DropdownMenuItem><button className="w-full h-full text-left" onClick={updateAcco}>Update Name or email</button></DropdownMenuItem>
