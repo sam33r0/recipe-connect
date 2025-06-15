@@ -116,7 +116,7 @@ function Home() {
         className="w-5/6 ml-8 mx-auto"
       >
         <CarouselContent className="mx-auto my-5">
-          {recipe.map((recip, index) => (
+          {recipe?.map((recip, index) => (
             <Link key={index} to={`/recipe/${recip._id}`}>
               <CarouselItem key={index} className="basis-2/3">
                 <div className='flex w-[250px] md:w-[300px] flex-col h-[450px]'>

@@ -41,7 +41,7 @@ function UpdateAvatar() {
       );
       console.log(response.data.data);
       if (response) {
-        dispatch(login(response.data.data))
+        await dispatch(login({ user: response.data.data }))
         setSucces(true);
         setTimeout(() => navigate('/'), 3000);
       }

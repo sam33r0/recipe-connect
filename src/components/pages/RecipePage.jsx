@@ -94,7 +94,7 @@ function RecipePage() {
               <span className={`${recipe?.recipe?.cookingTime.includes("1 hour") ? " text-yellow-500" : recipe?.recipe?.cookingTime.includes("2 hour") || recipe?.recipe?.cookingTime.includes("3 hour") ? " text-red-500 " : " text-green-500 "} font-bold`}>Cooking Time: &nbsp; </span>
               <span className={`${recipe?.recipe?.cookingTime.includes("1 hour") ? " text-yellow-500" : recipe?.recipe?.cookingTime.includes("2 hour") || recipe?.recipe?.cookingTime.includes("3 hour") ? " text-red-500 " : " text-green-500 "} font-bold text-lg`}>{recipe?.recipe?.cookingTime}</span>
             </div>
-            {!authStatus && (
+            {!(authStatus && recipe?.user?._id===userdata?._id) && (
               <div className='font-bold flex justify-end mt-5 '>
                 <div>
                   Author:-
@@ -107,7 +107,7 @@ function RecipePage() {
               </div>
             )}
 
-            {authStatus && (<div className='flex justify-between mx-8 mt-8'>
+            {(authStatus && recipe?.user?._id===userdata?._id) && (<div className='flex justify-between mx-8 mt-8'>
               <div>
                 <Switch
                   checked={visibility}
